@@ -46,4 +46,6 @@ function handleSubmit(e) {
 
   nameInput.value = "";
   dateInput.value = "";
+  updateButtonState();
+
 }
