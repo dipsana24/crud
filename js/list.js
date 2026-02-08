@@ -52,6 +52,7 @@ function renderItems(items) {
 
     itemsList.appendChild(li);
   });
+li.className = "item";
 
   if (itemsCount) {
     itemsCount.textContent = `${items.length} item${
