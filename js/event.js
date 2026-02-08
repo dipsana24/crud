@@ -9,7 +9,9 @@ function handleListClick(e) {
   const id = li.dataset.id;
   let items = getItems();
 
-  // checkbox toggle
+itemsList.addEventListener("click", handleListClick);
+clearBtn.addEventListener("click", handleClear);
+
   if (e.target.classList.contains("item-checkbox")) {
     items = items.map((item) =>
       item.id === id ? { ...item, completed: !item.completed } : item
