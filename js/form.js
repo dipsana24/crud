@@ -3,7 +3,16 @@ const nameInput = document.getElementById("item-input");
 const dateInput = document.getElementById("date-input");
 const submitBtn = document.getElementById("submit-btn");
 
-let editId = null; // id of the item being edited, if any
+let editId = null;
+function updateButtonState() {
+  if (nameInput.value.trim()) {
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = "1";
+  } else {
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.7";
+  }
+}
 
 function handleSubmit(e) {
   e.preventDefault();
