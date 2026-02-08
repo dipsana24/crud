@@ -1,3 +1,5 @@
+
+
 const STORAGE_KEY = "grocery_items";
 
 function getItems() {
