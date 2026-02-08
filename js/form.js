@@ -13,7 +13,7 @@ function updateButtonState() {
     submitBtn.style.opacity = "0.7";
   }
 }
-
+updateButtonState();
 function handleSubmit(e) {
   e.preventDefault();
 
