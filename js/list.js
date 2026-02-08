@@ -5,11 +5,13 @@ const itemsCount = document.getElementById("items-count");
 function renderItems(items) {
   itemsList.innerHTML = "";
 
-  if (items.length === 0) {
-    itemsList.innerHTML =
-      '<li style="text-align:center; color:#9ca3af; padding:6px;">No items yet</li>';
-    return;
-  }
+ if (items.length === 0) {
+  itemsList.innerHTML =
+    '<li style="text-align:center; color:#9ca3af; padding:6px;">No items yet</li>';
+  if (itemsCount) itemsCount.textContent = "0 items";
+  return;
+}
+
 
   items.forEach((item) => {
     const li = document.createElement("li");
