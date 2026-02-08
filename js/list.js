@@ -1,28 +1,34 @@
+
+
 const itemsList = document.getElementById("items-list");
 const itemsCount = document.getElementById("items-count");
 
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.innerText = text;
+  return div.innerHTML;
+}
 
 function renderItems(items) {
   itemsList.innerHTML = "";
 
- if (items.length === 0) {
-  itemsList.innerHTML =
-    '<li style="text-align:center; color:#9ca3af; padding:6px;">No items yet</li>';
- items.forEach((item) => {
-
-  itemsList.appendChild(li);
-});
-
-if (itemsCount) {
-  itemsCount.textContent = `${items.length} item${items.length === 1 ? "" : "s"}`;
-}
-
-}
-
+  if (!items || items.length === 0) {
+    itemsList.innerHTML =
+      '<li style="text-align:center; color:#9ca3af; padding:6px;">No items yet</li>';
+    if (itemsCount) itemsCount.textContent = "0 items";
+    return;
+  }
 
   items.forEach((item) => {
     const li = document.createElement("li");
-    li.className = "item";
+
+    // check if overdue (date < today and not completed)
+    const isOverdue =
+      item.date &&
+      !item.completed &&
+      new Date(item.date) < new Date(new Date().toDateString());
+
+    li.className = "item" + (isOverdue ? " item-overdue" : "");
     li.dataset.id = item.id;
 
     li.innerHTML = `
@@ -46,11 +52,10 @@ if (itemsCount) {
 
     itemsList.appendChild(li);
   });
-}
 
-// small helper to avoid HTML injection
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.innerText = text;
-  return div.innerHTML;
+  if (itemsCount) {
+    itemsCount.textContent = `${items.length} item${
+      items.length === 1 ? "" : "s"
+    }`;
+  }
 }
