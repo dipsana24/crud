@@ -1,4 +1,6 @@
 const itemsList = document.getElementById("items-list");
+const itemsCount = document.getElementById("items-count");
+
 
 function renderItems(items) {
   itemsList.innerHTML = "";
