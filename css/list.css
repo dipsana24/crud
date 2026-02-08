@@ -43,3 +43,10 @@ u.items {
   font-size: 0.8rem;
   color: #6b7280;
 }
+.items-count {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
