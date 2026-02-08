@@ -9,11 +9,7 @@
 // form submit = add / update
 form.addEventListener("submit", handleSubmit);
 
-// click anywhere in the list (edit, delete, checkbox)
-itemsList.addEventListener("click", handleListClick);
 
-// clear all items
-clearBtn.addEventListener("click", handleClear);
 
 // first render from localStorage
 renderItems(getItems());
