@@ -1,11 +1,45 @@
-ul {
+u.items {
   list-style: none;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
-li {
+.item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-checkbox {
+  width: 16px;
+  height: 16px;
+}
+
+.item-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-name {
+  font-size: 0.95rem;
+}
+
+.item-name.completed {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.item-date {
+  font-size: 0.8rem;
+  color: #6b7280;
 }

@@ -1,4 +1,4 @@
-const STORAGE_KEY = "crud_items";
+const STORAGE_KEY = "grocery_items";
 
 function getItems() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];

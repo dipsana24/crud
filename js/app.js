@@ -1,8 +1,11 @@
+// form submit = add / update
 form.addEventListener("submit", handleSubmit);
-itemsList.addEventListener("click", handleListClick);
-clearBtn.addEventListener("click", () => {
-  saveItems([]);
-  renderItems([]);
-});
 
+// click inside the list (edit / delete / checkbox)
+itemsList.addEventListener("click", handleListClick);
+
+// clear all
+clearBtn.addEventListener("click", handleClear);
+
+// initial render
 renderItems(getItems());

@@ -1,19 +1,44 @@
-const itemsList = document.getElementById("items-list");
+const clearBtn = document.getElementById("clear-btn");
 
-function renderItems(items) {
-  itemsList.innerHTML = "";
+function handleListClick(e) {
+  const items = getItems();
+  const li = e.target.closest(".item");
+  if (!li) return;
 
-  items.forEach((item) => {
-    const li = document.createElement("li");
+  const id = li.dataset.id;
+  let newItems = items;
 
-    li.innerHTML = `
-      <span>${item.name}</span>
-      <div>
-        <button class="edit" data-id="${item.id}">Edit</button>
-        <button class="delete" data-id="${item.id}">Delete</button>
-      </div>
-    `;
+  // toggle checkbox
+  if (e.target.classList.contains("item-checkbox")) {
+    newItems = items.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item,
+    );
+    saveItems(newItems);
+    renderItems(newItems);
+    return;
+  }
 
-    itemsList.appendChild(li);
-  });
+  // delete
+  if (e.target.classList.contains("btn-delete")) {
+    newItems = items.filter((item) => item.id !== id);
+    saveItems(newItems);
+    renderItems(newItems);
+    return;
+  }
+
+  // edit
+  if (e.target.classList.contains("btn-edit")) {
+    const item = items.find((item) => item.id === id);
+    if (!item) return;
+
+    nameInput.value = item.name;
+    dateInput.value = item.date || "";
+    editId = id;
+    submitBtn.textContent = "Update Item";
+  }
+}
+
+function handleClear() {
+  saveItems([]);
+  renderItems([]);
 }

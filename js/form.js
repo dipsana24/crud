@@ -1,19 +1,40 @@
-const itemsList = document.getElementById("items-list");
+const form = document.getElementById("item-form");
+const nameInput = document.getElementById("item-input");
+const dateInput = document.getElementById("date-input");
+const submitBtn = document.getElementById("submit-btn");
 
-function renderItems(items) {
-  itemsList.innerHTML = "";
+let editId = null; // id of the item being edited, if any
 
-  items.forEach((item) => {
-    const li = document.createElement("li");
+function handleSubmit(e) {
+  e.preventDefault();
 
-    li.innerHTML = `
-      <span>${item.name}</span>
-      <div>
-        <button class="edit" data-id="${item.id}">Edit</button>
-        <button class="delete" data-id="${item.id}">Delete</button>
-      </div>
-    `;
+  const name = nameInput.value.trim();
+  const date = dateInput.value; // can be empty
 
-    itemsList.appendChild(li);
-  });
+  if (!name) return;
+
+  let items = getItems();
+
+  if (editId) {
+    // update
+    items = items.map((item) =>
+      item.id === editId ? { ...item, name, date } : item,
+    );
+    editId = null;
+    submitBtn.textContent = "Add Item";
+  } else {
+    // add new
+    items.push({
+      id: Date.now().toString(),
+      name,
+      date,
+      completed: false,
+    });
+  }
+
+  saveItems(items);
+  renderItems(items);
+
+  nameInput.value = "";
+  dateInput.value = "";
 }
