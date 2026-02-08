@@ -56,4 +56,8 @@ function handleClear() {
   editId = null;
   submitBtn.textContent = "Add Item";
   updateButtonState();
+  e.target.classList.contains("item-checkbox")
+e.target.classList.contains("btn-delete")
+e.target.classList.contains("btn-edit")
+
 }
