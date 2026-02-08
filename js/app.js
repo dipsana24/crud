@@ -1,9 +1,3 @@
-(function setDefaultDate() {
-  const today = new Date().toISOString().split("T")[0];
-  if (dateInput) {
-    dateInput.value = today;
-  }
-})();
 
 (function setDefaultDate() {
   const today = new Date().toISOString().split("T")[0];
@@ -11,14 +5,15 @@
     dateInput.value = today;
   }
 })();
+
 // form submit = add / update
 form.addEventListener("submit", handleSubmit);
 
-// click inside the list (edit / delete / checkbox)
+// click anywhere in the list (edit, delete, checkbox)
 itemsList.addEventListener("click", handleListClick);
 
-// clear all
+// clear all items
 clearBtn.addEventListener("click", handleClear);
 
-// initial render
+// first render from localStorage
 renderItems(getItems());
