@@ -1,44 +1,57 @@
+
+
 const clearBtn = document.getElementById("clear-btn");
 
 function handleListClick(e) {
-  const items = getItems();
   const li = e.target.closest(".item");
   if (!li) return;
 
   const id = li.dataset.id;
-  let newItems = items;
+  let items = getItems();
 
-  // toggle checkbox
+  // checkbox toggle
   if (e.target.classList.contains("item-checkbox")) {
-    newItems = items.map((item) =>
-      item.id === id ? { ...item, completed: !item.completed } : item,
+    items = items.map((item) =>
+      item.id === id ? { ...item, completed: !item.completed } : item
     );
-    saveItems(newItems);
-    renderItems(newItems);
+    saveItems(items);
+    renderItems(items);
     return;
   }
 
-  // delete
+  // delete button
   if (e.target.classList.contains("btn-delete")) {
-    newItems = items.filter((item) => item.id !== id);
-    saveItems(newItems);
-    renderItems(newItems);
+    items = items.filter((item) => item.id !== id);
+    saveItems(items);
+    renderItems(items);
     return;
   }
 
-  // edit
+  // edit button
   if (e.target.classList.contains("btn-edit")) {
-    const item = items.find((item) => item.id === id);
+    const item = items.find((it) => it.id === id);
     if (!item) return;
 
     nameInput.value = item.name;
     dateInput.value = item.date || "";
     editId = id;
     submitBtn.textContent = "Update Item";
+    updateButtonState();
   }
 }
 
 function handleClear() {
+  const items = getItems();
+  if (!items.length) return;
+
+  const ok = confirm("Clear all items?");
+  if (!ok) return;
+
   saveItems([]);
   renderItems([]);
+  nameInput.value = "";
+  dateInput.value = "";
+  editId = null;
+  submitBtn.textContent = "Add Item";
+  updateButtonState();
 }
