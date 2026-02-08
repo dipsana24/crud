@@ -8,8 +8,15 @@ function renderItems(items) {
  if (items.length === 0) {
   itemsList.innerHTML =
     '<li style="text-align:center; color:#9ca3af; padding:6px;">No items yet</li>';
-  if (itemsCount) itemsCount.textContent = "0 items";
-  return;
+ items.forEach((item) => {
+
+  itemsList.appendChild(li);
+});
+
+if (itemsCount) {
+  itemsCount.textContent = `${items.length} item${items.length === 1 ? "" : "s"}`;
+}
+
 }
 
 
