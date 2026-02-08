@@ -45,8 +45,9 @@ function renderItems(items) {
       </div>
 
       <div class="action-buttons">
-        <button class="btn-edit" title="Edit" data-id="${item.id}">✏️</button>
-        <button class="btn-delete" title="Delete" data-id="${item.id}">🗑️</button>
+     <button class="btn-edit">✏️</button>
+<button class="btn-delete">🗑️</button>
+
       </div>
     `;
 
