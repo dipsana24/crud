@@ -1,5 +1,3 @@
-
-
 const itemsList = document.getElementById("items-list");
 const itemsCount = document.getElementById("items-count");
 
@@ -33,9 +31,8 @@ function renderItems(items) {
 
     li.innerHTML = `
       <div class="item-left">
-        <input type="checkbox" class="item-checkbox" ${
-          item.completed ? "checked" : ""
-        } />
+        <input type="checkbox" class="item-checkbox" ${item.completed ? "checked" : ""
+      } />
         <div class="item-texts">
           <span class="item-name ${item.completed ? "completed" : ""}">
             ${escapeHtml(item.name)}
@@ -53,11 +50,10 @@ function renderItems(items) {
 
     itemsList.appendChild(li);
   });
-li.className = "item";
+
 
   if (itemsCount) {
-    itemsCount.textContent = `${items.length} item${
-      items.length === 1 ? "" : "s"
-    }`;
+    itemsCount.textContent = `${items.length} item${items.length === 1 ? "" : "s"
+      }`;
   }
 }

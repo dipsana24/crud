@@ -1,17 +1,13 @@
-
-
 const clearBtn = document.getElementById("clear-btn");
 
 function handleListClick(e) {
   const li = e.target.closest(".item");
   if (!li) return;
 
-  const id = li.dataset.id;
+  const id = Number(li.dataset.id); // Convert to number
   let items = getItems();
 
-itemsList.addEventListener("click", handleListClick);
-clearBtn.addEventListener("click", handleClear);
-
+  // Checkbox
   if (e.target.classList.contains("item-checkbox")) {
     items = items.map((item) =>
       item.id === id ? { ...item, completed: !item.completed } : item
@@ -21,16 +17,16 @@ clearBtn.addEventListener("click", handleClear);
     return;
   }
 
-  // delete button
-  if (e.target.classList.contains("btn-delete")) {
+  // Delete button (handle click on button or icon)
+  if (e.target.closest(".btn-delete")) {
     items = items.filter((item) => item.id !== id);
     saveItems(items);
     renderItems(items);
     return;
   }
 
-  // edit button
-  if (e.target.classList.contains("btn-edit")) {
+  // Edit button
+  if (e.target.closest(".btn-edit")) {
     const item = items.find((it) => it.id === id);
     if (!item) return;
 
@@ -56,8 +52,4 @@ function handleClear() {
   editId = null;
   submitBtn.textContent = "Add Item";
   updateButtonState();
-  e.target.classList.contains("item-checkbox")
-e.target.classList.contains("btn-delete")
-e.target.classList.contains("btn-edit")
-
 }

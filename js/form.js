@@ -29,7 +29,7 @@ function handleSubmit(e) {
   const date = dateInput.value; // can be empty
 
   if (!name) {
-    if (errorMsg) errorMsg.textContent = "Item name cannot be empty";
+    if (errorMsg) errorMsg.textContent = "Please enter an item name";
     return;
   }
   if (errorMsg) errorMsg.textContent = "";
@@ -39,18 +39,19 @@ function handleSubmit(e) {
   if (editId) {
     // update existing
     items = items.map((item) =>
-      item.id === editId ? { ...item, name, date } : item
+      item.id === editId ? { ...item, name, date } : item,
     );
     editId = null;
     submitBtn.textContent = "Add Item";
   } else {
     // add new
-    items.push({
-      id: Date.now().toString(),
+    const newItem = {
+      id: Date.now(),
       name,
       date,
       completed: false,
-    });
+    };
+    items.push(newItem);
   }
 
   saveItems(items);
@@ -63,3 +64,6 @@ function handleSubmit(e) {
 
 // update button state while typing
 nameInput.addEventListener("input", updateButtonState);
+
+// form submit = add / update
+form.addEventListener("submit", handleSubmit);

@@ -7,7 +7,12 @@
 })();
 
 // form submit = add / update
-form.addEventListener("submit", handleSubmit);
+// form submit = add / update
+// form.addEventListener("submit", handleSubmit); // Moved to form.js
+
+// Event Listeners
+itemsList.addEventListener("click", handleListClick);
+clearBtn.addEventListener("click", handleClear);
 
 
 
